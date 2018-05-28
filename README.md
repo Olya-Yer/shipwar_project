@@ -1,6 +1,7 @@
-# shipwar_projcet
+# Shipwar
 
-This is a primitive implementation of Battleship game.
+This is a primitive implementation of Battleship game. The app contains a grid representing the board from Battleship game, user shoud input coordinates of the squares they want to shut. 
+Small ship size is one square , medium is two squares and the big ship is three consecutive squares.
 
 ## Getting Started
 
@@ -41,6 +42,6 @@ Play untill all ships are shut.
 
 ## Authors
 
-* **Olya Yeritspokhyan** - *All the work* - [PurpleBooth](https://github.com/olinka-1993)
+* **Olya Yeritspokhyan** - *All the work* - [Olya](https://github.com/olinka-1993)
 
 
