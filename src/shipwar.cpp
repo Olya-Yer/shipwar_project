@@ -7,6 +7,7 @@
 
 #include <iostream>	//cout
 #include <time.h>	//rand()
+#include <typeinfo>     //for typeid
 #include "assert.h"
 #include "shipwar.hpp"
 using namespace std;
@@ -44,6 +45,10 @@ Shipwar::Shipwar(int board_height1,int board_length1,int n_of_small_ships1,int n
 
 bool Shipwar::fill_the_square(int row, int col)
 {
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
         int *current_sea = this->sea;
         assert(current_sea);
         if(current_sea[row*board_length+col]!=1) {
@@ -56,26 +61,46 @@ bool Shipwar::fill_the_square(int row, int col)
 }
 bool Shipwar::square_is_free(int row,int col)
 {
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
         int *current_sea = this->sea;
         assert(current_sea);
         return current_sea[row*board_length+col]!=1;
 }
 bool Shipwar::square_is_valide(int row,int col)
 {
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
         return ( (row*board_length+col)>=0) && ( (row*board_length+col) <= (board_height*board_length) );
 }
 bool Shipwar::check_side(int row,int col)
 {
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
         return (square_is_valide(row, col)&&square_is_free(row, col));
 }
 bool Shipwar::is_not_on_corner(int row,int col)
-{
+{       
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
         return (row > 0) && (col > 0) && ( row< (board_height-1)) && ( col< (board_length-1));
 }
 
 bool Shipwar::check_sides(const int row,const int col)
 {
-        if(is_not_on_corner( row, col)) {
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
+       if(is_not_on_corner( row, col)) {
                 if( check_side(row-1,col) && check_side(row+1,col) && check_side(row,col-1)&&check_side(row,col+1)) {
                         return 1;
                 }
@@ -136,7 +161,9 @@ void Shipwar::fill_small_ships()
 }
 
 int Shipwar::get_row(int row)
-{
+{       
+        assert(row>=0);
+        assert(row<board_height);
         int newRow;
         if (row< (board_height-1)) {
                 newRow = row+1 ;
@@ -148,6 +175,8 @@ int Shipwar::get_row(int row)
 }
 int Shipwar::get_col(int col)
 {
+        assert(col>=0);
+        assert(col < board_length);
         int newCol;
         if (col< (board_length-1)) {
                 newCol = col+1 ;
@@ -184,9 +213,7 @@ void Shipwar::fill_medium_ships()
 void Shipwar::fill_big_ships()
 {
         int n =n_of_big_ships;
-        // std::cout << "n_of_big_ships"<<n_of_big_ships << '\n';
         while (n!=0){
-          // std::cout << "creating a ship" << '\n';
                 bool direction= rand()%2;
                 int row = rand()%board_height;
                 int col = rand()%board_length;
@@ -229,19 +256,31 @@ void Shipwar::fill_the_map()
 
 }
 void Shipwar::set_checked(int row, int col)
-{
+{       
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
         int *current_sea = this->sea;
         assert(current_sea);
         current_sea[row*board_length+col]=2;
 }
 bool Shipwar::checked(int row, int col)
-{
+{       
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
         int *current_sea = this->sea;
         assert(current_sea);
         return current_sea[row*board_length+col]==2;
 }
 void Shipwar::shut(int row, int col)
-{
+{       
+        assert(col>=0);
+        assert(row>=0);
+        assert(row<board_height);
+        assert(col < board_length);
         if(square_is_free(row,col)){
                 set_checked(row,col);
                 std::cout << "miss" << '\n';
@@ -273,4 +312,27 @@ void Shipwar::print_the_sea()
                 }
                 std::cout << '\n';
         }
+}
+void Shipwar::play()
+{
+	fill_the_map();
+	// ths code is left here for the testing purposes, if the viewer would wish to have a look at what is going on behind the curtains.
+	//std::cout << "this is the generated bord" << '\n';
+       	//game->print_the_sea();
+       	int row;
+       	int column;
+	std::cout << "number of ships placed on the sea "<< '\n';
+	std::cout << "small : " << n_of_small_ships << '\n';
+	std::cout << "medium : " <<  n_of_medium_ships << '\n';
+	std::cout << "big : " << n_of_big_ships << '\n';
+       	while (sum_of_all_squares !=0){
+		do{
+              		std::cout << "input the coordinates" << '\n';
+               		std::cin >> row;
+               		std::cin >> column;
+                        assert(row);
+                        assert(column);
+		}while((std::min(row,column)<=0)||((row>board_height)||(column>board_length)));
+               	shut(row-1, column-1);
+       	}
 }

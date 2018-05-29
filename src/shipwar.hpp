@@ -75,7 +75,7 @@ public:
    * was the square already shut
    */
   void shut(int row, int col);
-
+  void play();
   /**
    * @brief A method to shut the ship
    * @param[in] row - x coordinate of the square
