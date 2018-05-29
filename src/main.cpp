@@ -7,9 +7,9 @@
 int main(){
 	Shipwar *game = new Shipwar(8,7,4,3,1);
 	game->fill_the_map();
-	std::cout << "this is the generated bord" << '\n';
-       	// ths code is left here for the testing purposes, if the viewer would wish to have a look at what is going on behind the curtains.
-	//game->print_the_sea();
+	// ths code is left here for the testing purposes, if the viewer would wish to have a look at what is going on behind the curtains.
+	//std::cout << "this is the generated bord" << '\n';
+       	//game->print_the_sea();
        	int row;
        	int column;
 	std::cout << "number of ships placed on the sea "<< '\n';
