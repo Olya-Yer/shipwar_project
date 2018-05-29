@@ -40,6 +40,7 @@ Shipwar::Shipwar(int board_height1,int board_length1,int n_of_small_ships1,int n
         sum_of_all_squares = n_of_small_ships+n_of_medium_ships*2+n_of_big_ships*3;
         srand( time( NULL ) );
 }
+// TODO add asserts for inputs and outputs.
 
 bool Shipwar::fill_the_square(int row, int col)
 {
