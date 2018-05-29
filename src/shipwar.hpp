@@ -25,7 +25,7 @@
   */
 class Shipwar
 {
-  // TODO change the names of privet class member to m_name
+  // TODO change the names of privet class members to m_name
 private:
   // The game board. This is an one dimentional array that is treated as a matrix(grig)
   int *sea;
@@ -56,8 +56,15 @@ public:
    * with number of small,medium and big ships 6,4,4 respectively
    */
   Shipwar();
+ /**
+   * @brief class destructor
+   */
   ~Shipwar(){};
-  // TODO write brief
+  /**
+   * @brief class constructor
+   * @details by default the game is played on 10x10 board
+   * with number of small,medium and big ships 6,4,4 respectively.
+   */
   Shipwar(int board_height,int board_length,int n_of_small_ships,int n_of_medium_ships, int n_of_big_ships);
   /**
    * @brief A method to shut the ship
@@ -101,7 +108,7 @@ public:
    * @details changes square value in the matrix from 0 to 1. Coordinates are picked randomly.
    */
   void fill_small_ships();
-  // TODO: write brief
+  // @brief checks if the square is not one of the corner cases.
   bool is_not_on_corner(int row,int col);
   /**
    * @brief Fills the map with medium ships
