@@ -1,5 +1,5 @@
  /**
-  * Թfile shipwar.cpp "src/shipwar.hpp"
+  * @file shipwar.cpp "src/shipwar.hpp"
   * @author Olya Yeritspokhyan
   * @date 24 May 2018
   * @brief File containing implementation of class cunstractors and methods defiled in shipwar.hpp "src/shipwar.hpp".
@@ -7,7 +7,6 @@
 
 #include <iostream>	//cout
 #include <time.h>	//rand()
-//#include <cstdlib>
 #include "assert.h"
 #include "shipwar.hpp"
 using namespace std;
@@ -18,7 +17,7 @@ Shipwar::Shipwar()
         board_height = 10;
         board_length = 10;
         sea = new int[board_height*board_length]{0};
-        if(NULL == sea){
+        if(NULL == sea) {
                 std::abort();
         }
 	n_of_small_ships = 6;
@@ -32,7 +31,7 @@ Shipwar::Shipwar(int board_height1,int board_length1,int n_of_small_ships1,int n
         board_height = board_height1;
         board_length = board_length1;
         sea = new int[board_height*board_length]{0};
-        if(NULL == sea){
+        if(NULL == sea) {
                 std::abort();
         }
         n_of_small_ships = n_of_small_ships1;
@@ -46,11 +45,11 @@ bool Shipwar::fill_the_square(int row, int col)
 {
         int *current_sea = this->sea;
         assert(current_sea);
-        if(current_sea[row*board_length+col]!=1){
+        if(current_sea[row*board_length+col]!=1) {
                 current_sea[row*board_length+col]=1;
                 return 1;
         }
-        else{
+        else {
                 return 0;
         }
 }
@@ -62,7 +61,7 @@ bool Shipwar::square_is_free(int row,int col)
 }
 bool Shipwar::square_is_valide(int row,int col)
 {
-        return ((row*board_length+col)>=0)&&((row*board_length+col)<=(board_height*board_length));
+        return ( (row*board_length+col)>=0) && ( (row*board_length+col) <= (board_height*board_length) );
 }
 bool Shipwar::check_side(int row,int col)
 {
@@ -75,45 +74,45 @@ bool Shipwar::is_not_on_corner(int row,int col)
 
 bool Shipwar::check_sides(const int row,const int col)
 {
-        if(is_not_on_corner( row, col)){
-                if(check_side(row-1,col)&&check_side(row+1,col)&&check_side(row,col-1)&&check_side(row,col+1)){
+        if(is_not_on_corner( row, col)) {
+                if( check_side(row-1,col) && check_side(row+1,col) && check_side(row,col-1)&&check_side(row,col+1)) {
                         return 1;
                 }
         }
-        else if(0 == row){
-                if(0== col){
-                        if(check_side(row+1,col)&&check_side(row,col+1)){
+        else if(0 == row) {
+                if(0== col) {
+                        if(check_side(row+1,col)&&check_side(row,col+1)) {
                                 return 1;}
                 }
-                else if(board_length-1== col){
-                        if(check_side(row+1,col)&&check_side(row,col-1)){
+                else if(board_length-1== col) {
+                        if(check_side(row+1,col)&&check_side(row,col-1)) {
                                 return 1;}
                 }
-                else{
-                        if(check_side(row+1,col)&&check_side(row,col-1)&&check_side(row,col+1)){
-                                return 1;}
-                }
-        }
-        else if((board_height-1) == row){
-                if(0== col){
-                        if(check_side(row-1,col)&&check_side(row,col+1)){
-                                return 1;}
-                }
-                else if((board_length-1)== col){
-                        if(check_side(row-1,col)&&check_side(row,col-1)){
-                                return 1;}
-                }
-                else{
-                        if(check_side(row-1,col)&&check_side(row,col-1)&&check_side(row,col+1)){
+                else {
+                        if(check_side(row+1,col)&&check_side(row,col-1)&&check_side(row,col+1)) {
                                 return 1;}
                 }
         }
-        else if(0 == col){
+        else if((board_height-1) == row) {
+                if(0== col) {
+                        if(check_side(row-1,col)&&check_side(row,col+1)) {
+                                return 1;}
+                }
+                else if((board_length-1)== col) {
+                        if(check_side(row-1,col)&&check_side(row,col-1)) {
+                                return 1;}
+                }
+                else {
+                        if(check_side(row-1,col)&&check_side(row,col-1)&&check_side(row,col+1)) {
+                                return 1;}
+                }
+        }
+        else if(0 == col) {
                 if(check_side(row-1,col)&&check_side(row,row+1)&&check_side(row,col+1)){
                         return 1;}
         }
-        else if((board_length-1) == col){
-                if(check_side(row-1,col)&&check_side(row,row+1)&&check_side(row,col-1)){
+        else if((board_length-1) == col) {
+                if(check_side(row-1,col)&&check_side(row,row+1)&&check_side(row,col-1)) {
                         return 1;}
         }
         return 0;
