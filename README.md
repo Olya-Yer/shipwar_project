@@ -18,10 +18,10 @@ Open a terminal (Ctrl - Alt + T)
 ### Installing
 
 open the master branch of the copy of the project 
+for example
 
 ```
-for example
-/Documents/games/shiwar_project
+cd /Documents/games/shiwar_project
 ```
 run make command to install
 ```
