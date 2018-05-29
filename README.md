@@ -10,9 +10,10 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 You need to have an Ubuntu OS
+Open the Terminal
 
 ```
-Open a terminal (Ctrl - Alt + T) 
+ (Ctrl - Alt + T) 
 ```
 
 ### Installing
