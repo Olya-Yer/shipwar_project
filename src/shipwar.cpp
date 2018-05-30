@@ -333,7 +333,7 @@ void Shipwar::play()
                		std::cin >> column;
                         assert(row);
                         assert(column);
-		}while((std::min(row,column)<=0)||((row>board_height)||(column>board_length)));
+		}while((row<=0)||(column<=0)||((row>board_height)||(column>board_length)));
                	shut(row-1, column-1);
        	}
 }
