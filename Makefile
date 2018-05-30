@@ -1,19 +1,27 @@
-TARGETS = bin/shipwar.exe
-SOURCES = $(wildcard src/*.cpp)
-HEADERS = $(wildcard  src/*.hpp)
-OBJECTS = $(patsubst src/%.cpp, obj/%.o, $(SOURCES))
-FOLDERS = obj bin
+TARGETS := bin/shipwar.exe
+SOURCES := $(wildcard src/*.cpp)
+HEADERS := $(wildcard  src/*.hpp)
+OBJECTS := $(patsubst src/%.cpp, obj/%.o, $(SOURCES))
+FOLDERS := obj bin
 
-
-all: $(OBJECTS) $(FOLDERS)
+all: $(OBJECTS)
 	$(CXX) -std=c++11  $(OBJECTS)  -o $(TARGETS)
 
-obj/%.o : src/%.cpp $(FOLDERS)
+obj/%.o : src/%.cpp  $(FOLDERS)
 	$(CXX) -std=c++11 -c $<  -o $@
+ifdef obj
 obj:
-	mkdir -p obj   
-bin: 
-	mkdir -p bin
+	@echo "Creating obj/"
+	mkdir -p obj
+endif
+#obj:
+#	mkdir -p obj
+ifeq (bin,)
+bin:
+	@echo "Creating bin/"
+	@mkdir -p bin
+endif
+
 
 .PHONY: docs
 docs:

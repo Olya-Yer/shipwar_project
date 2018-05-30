@@ -8,6 +8,8 @@
 #include <iostream>	//cout
 #include <time.h>	//rand()
 #include <typeinfo>     //for typeid
+#include <cstdlib>
+#include <stdlib.h> 
 #include "assert.h"
 #include "shipwar.hpp"
 using namespace std;
@@ -41,7 +43,6 @@ Shipwar::Shipwar(int board_height1,int board_length1,int n_of_small_ships1,int n
         sum_of_all_squares = n_of_small_ships+n_of_medium_ships*2+n_of_big_ships*3;
         srand( time( NULL ) );
 }
-// TODO add asserts for inputs and outputs.
 
 bool Shipwar::fill_the_square(int row, int col)
 {
@@ -281,12 +282,12 @@ void Shipwar::shut(int row, int col)
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
+        if(checked(row,col)){
+                 std::cout << "you have already tried shuting here" << '\n';
+        }
         if(square_is_free(row,col)){
                 set_checked(row,col);
                 std::cout << "miss" << '\n';
-        }
-        else if(checked(row,col)){
-                std::cout << "you have already tried shuting here" << '\n';
         }
         else if(!square_is_free(row,col)){
                 set_checked(row,col);

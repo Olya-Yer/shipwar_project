@@ -6,7 +6,7 @@
 
 int main(){
 	Shipwar *game = new Shipwar();
-	game->play();
+                game->play();
         std::cout << "game is over. All ships are shut" << '\n';
         delete game;
 	return 0;
