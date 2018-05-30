@@ -9,14 +9,13 @@ all: $(OBJECTS)
 
 obj/%.o : src/%.cpp  $(FOLDERS)
 	$(CXX) -std=c++11 -c $<  -o $@
-ifdef obj
+ifndef obj
 obj:
 	@echo "Creating obj/"
 	mkdir -p obj
 endif
-#obj:
-#	mkdir -p obj
-ifeq (bin,)
+
+ifndef bin
 bin:
 	@echo "Creating bin/"
 	@mkdir -p bin
