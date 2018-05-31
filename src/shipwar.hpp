@@ -26,11 +26,10 @@
 class Shipwar
 {
   // TODO change the names of privet class members to m_name
-private:
-  // The game board. This is an one dimensional array that is treated as a matrix(grig)
-  int *sea;
-  //height of the matrix that is sea(i.e. number of rows)
 public:
+  // The game board. This is an one dimensional array that is treated as a matrix(grig)
+  int *current_sea;
+  //height of the matrix that is sea(i.e. number of rows)
   int board_height;
   //width of the matrix that is sea(i.e. number of columns)
   int board_length;
@@ -46,7 +45,7 @@ public:
   * Big ship can be horizontal or vertical
   */
   int n_of_big_ships;
-  /**sum of all squares that need to be shut.
+  /**sum of all squares that need to be shooted.
   * (i.e.all ones in the matrix filled with zeros)
   */
   int sum_of_all_squares;
@@ -59,7 +58,7 @@ public:
  /**
    * @brief class destructor
    */
-  ~Shipwar(){};
+  ~Shipwar();
   /**
    * @brief class constructor
    * @details by default the game is played on 10x10 board
@@ -67,32 +66,45 @@ public:
    */
   Shipwar(int board_height,int board_length,int n_of_small_ships,int n_of_medium_ships, int n_of_big_ships);
   /**
-   * @brief A method to shut the ship
+   * @brief A method to shoot the ship
    * @param[in] row - x coordinate of the square
    * @param[in] col - y coordinate of the square
-   * This method tries to shut the ship and tells if shutting was successful,
+   * This method tries to shoot the ship and tells if shooting was successful,
    * if yes , is the ship just damaged(still alive) or it was killed or
-   * was the square already shut
+   * was the square already shooted.
    */
-  void shut(int row, int col);
+  void shoot(int row, int col);
+   /**
+   * @brief A method to create the board in constructors
+   */
+  void init();
+   /**
+   * @brief A method to start the game
+   * This method asks the user for an imput coordinates and shoots the square
+   * until all squares with ships are shooted.
+   */
   void play();
   /**
-   * @brief A method to shut the ship
-   * @param[in] row - x coordinate of the square
-   * @param[in] col - y coordinate of the square
-   * This method tries to shut the ship and tells if shutting was successful,
-   * if successful,it also tells if the ship is just damaged(still alive) or it was killed or
-   * was the square already shut.
+   * @brief sets the square already shooted
    */
   void set_checked(int row, int col);
-  /**
-   * @brief Marks the square as already shut
+   /**
+   * @brief checks if the square index is more than 0
    * @param[in] row - x coordinate of the square
    * @param[in] col - y coordinate of the square
-   * @return bool - true, if the square was previously shut , false if not.
+   */
+  bool is_positive(int row, int col);
+  bool is_within_borders(int row, int col);
+  bool not_upper_corner(int row, int col);
+  bool not_lower_corner(int row, int col);
+  /**
+   * @brief Marks the square as already shoot
+   * @param[in] row - x coordinate of the square
+   * @param[in] col - y coordinate of the square
+   * @return bool - true, if the square was previously shooted , false if not.
    * @details This function sets the valuer of the square that it wants to mark to 2.
    */
-  bool checked(int row, int col);
+  bool is_checked(int row, int col);
 
   /**
    * @brief constructs the ship
@@ -133,7 +145,7 @@ public:
      * @param[in] col - y coordinate of the square
      * @return bool - true, if the square is free, false otherwise.
      */
-  bool square_is_free(int row,int col);
+  bool is_square_free(int row,int col);
 
   /**
    * @brief Checks if the coordinates that were inputed are valid
@@ -141,7 +153,7 @@ public:
    * @param[in] col - y coordinate of the square
    * @return bool - true, if the coordinates are valid;
    */
-  bool square_is_valide(int row,int col);
+  bool is_square_valid(int row,int col);
   /**
    * @brief Checks if the square is valid and free
    * @param[in] row - x coordinate of the square
@@ -181,4 +193,36 @@ public:
    */
   void print_the_sea();
 
+  int* get_current_sea();
+
+  //functions used in check_sides(); 
+
+  bool check_all_sides(int row, int col);
+
+  bool is_on_upper_left(int row,int col);
+
+  bool check_upper_left(int row,int col);
+
+  bool is_on_upper_right(int row, int col);
+
+  bool check_upper_right(int row,int col);
+
+  bool is_on_lower_left(int row,int col);
+
+  bool check_lower_left(int row,int col);
+
+  bool is_on_lower_right(int row, int col);
+
+  bool check_lower_right(int row,int col);
+
+  bool is_on_silling(int row,int col);
+
+  bool check_silling(int row,int col);
+
+  bool is_on_floor(int row,int col);
+
+  bool check_floor(int row,int col);
+
+
 };
+// vim:et:tabstop=8:shiftwidth=8:cindent:fo=croq:textwidth=80:

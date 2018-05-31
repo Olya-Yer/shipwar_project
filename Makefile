@@ -4,15 +4,17 @@ HEADERS := $(wildcard  src/*.hpp)
 OBJECTS := $(patsubst src/%.cpp, obj/%.o, $(SOURCES))
 FOLDERS := obj bin
 
-all: $(OBJECTS)
-	$(CXX) -std=c++11  $(OBJECTS)  -o $(TARGETS)
+all: $(OBJECTS) $(HEADERS)
+#	@echo "Buildnig .exe ..."
+	@$(CXX) -std=c++11  $(OBJECTS)  -o $(TARGETS)
 
 obj/%.o : src/%.cpp  $(FOLDERS)
-	$(CXX) -std=c++11 -c $<  -o $@
+#	@echo "Creating objects..."
+	@$(CXX) -std=c++11 -c $<  -o $@
 ifndef obj
 obj:
 	@echo "Creating obj/"
-	mkdir -p obj
+	@mkdir -p obj
 endif
 
 ifndef bin
