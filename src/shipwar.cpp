@@ -44,7 +44,7 @@ Shipwar::~Shipwar ()
 void Shipwar::init ()
 {
         current_sea = new int[board_height*board_length]{0};
-        if (NULL == current_sea) {
+        if(NULL == current_sea) {
                 std::abort();
         }
         sum_of_all_squares = n_of_small_ships+n_of_medium_ships*2+n_of_big_ships*3;
@@ -58,7 +58,7 @@ bool Shipwar::fill_the_square(int row, int col)
         assert(row<board_height);
         assert(col < board_length);
         assert(current_sea);
-        if ( current_sea[row*board_length+col]!=1 ) {
+        if(current_sea[row*board_length+col]!=1) {
                 current_sea[row*board_length+col]=1;
                 return 1;
         }
@@ -67,7 +67,7 @@ bool Shipwar::fill_the_square(int row, int col)
         }
 }
 
-bool Shipwar::is_square_free(int row,int col)
+bool Shipwar::is_square_free(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
@@ -95,7 +95,7 @@ bool Shipwar::is_within_borders(int row, int col)
         return (row*board_length+col) <= (board_height*board_length); 
 }
 
-bool Shipwar::is_square_valid(int row,int col)
+bool Shipwar::is_square_valid(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
@@ -104,13 +104,13 @@ bool Shipwar::is_square_valid(int row,int col)
         return (is_positive(row,col)&&is_within_borders(row,col));
 }
 
-bool Shipwar::check_side(int row,int col)
+bool Shipwar::check_side(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( is_square_valid(row, col) && is_square_free(row, col) );
+        return (is_square_valid(row, col)&&is_square_free(row, col));
 }
 
 bool Shipwar:: not_upper_corner(int row, int col)
@@ -119,7 +119,7 @@ bool Shipwar:: not_upper_corner(int row, int col)
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ((row >0) && (col > 0));
+        return ((row >0)&&(col >0));
 }
 
 bool Shipwar:: not_lower_corner(int row, int col)
@@ -128,16 +128,16 @@ bool Shipwar:: not_lower_corner(int row, int col)
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( ( row < (board_height-1) ) && ( col< (board_length-1) ) );
+        return ((row < (board_height-1))&&(col< (board_length-1)));
 }
 
-bool Shipwar::is_not_on_corner(int row,int col)
+bool Shipwar::is_not_on_corner(int row, int col)
 {       
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return (not_upper_corner(row,col) && not_lower_corner(row,col));
+        return (not_upper_corner(row,col)&&not_lower_corner(row,col));
 }
 
 bool Shipwar::check_all_sides(int row, int col)
@@ -146,21 +146,21 @@ bool Shipwar::check_all_sides(int row, int col)
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        if(check_side(row-1,col) && check_side(row+1,col)){
+        if(check_side(row-1,col)&&check_side(row+1,col)) {
                 return check_side(row,col-1)&&check_side(row,col+1);
         }
 }
 
-bool Shipwar:: is_on_upper_left(int row,int col)
+bool Shipwar:: is_on_upper_left(int row, int col)
 {  
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( (0 == row) && (0 == col) ); 
+        return ((0 == row)&&(0 == col)); 
 }
 
-bool Shipwar:: check_upper_left(int row,int col)
+bool Shipwar:: check_upper_left(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
@@ -175,10 +175,10 @@ bool Shipwar:: is_on_upper_right(int row, int col)
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( (0 == row) && (board_length-1 == col) );
+        return ((0 == row)&&(board_length-1 == col));
 }
 
-bool Shipwar:: check_upper_right(int row,int col)
+bool Shipwar:: check_upper_right(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
@@ -187,16 +187,16 @@ bool Shipwar:: check_upper_right(int row,int col)
         return (check_side(row+1,col)&&check_side(row,col-1)); 
 }
 
-bool Shipwar:: is_on_lower_left(int row,int col)
+bool Shipwar:: is_on_lower_left(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( (board_height-1 == row) && (0 == col) ); 
+        return ((board_height-1 == row)&&(0 == col)); 
 }
 
-bool Shipwar:: check_lower_left(int row,int col)
+bool Shipwar:: check_lower_left(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
@@ -211,55 +211,55 @@ bool Shipwar:: is_on_lower_right(int row, int col)
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return  ( (board_height -1  == row) && (board_length-1 == col) ); 
+        return  ((board_height -1  == row)&&(board_length-1 == col)); 
 }
 
-bool Shipwar:: check_lower_right(int row,int col)
+bool Shipwar:: check_lower_right(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return check_side(row-1,col)&&check_side(row,col-1) ;
+        return (check_side(row-1,col)&&check_side(row,col-1));
 }
 
-bool Shipwar::is_on_silling(int row,int col)
+bool Shipwar::is_on_silling(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( (0== row) && (col > 0 ) && (col < board_length -1) );
+        return ((0== row)&&(col > 0)&&(col < board_length -1));
 }
 
-bool Shipwar::check_silling(int row,int col)
+bool Shipwar::check_silling(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( check_side(row+1,col)&&check_side(row,col-1)&&check_side(row,col+1) );
+        return (check_side(row+1,col)&&check_side(row,col-1)&&check_side(row,col+1));
 }
 
-bool Shipwar::is_on_floor(int row,int col)
+bool Shipwar::is_on_floor(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( (board_height -1 == row) && (col > 0 ) && (col < board_length -1) );
+        return ((board_height -1 == row)&&(col > 0 )&&(col < board_length -1));
 }
 
-bool Shipwar::check_floor(int row,int col)
+bool Shipwar::check_floor(int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
         assert(row<board_height);
         assert(col < board_length);
-        return ( check_side(row-1,col)&&check_side(row,col-1)&&check_side(row,col+1) );
+        return (check_side(row-1,col)&&check_side(row,col-1)&&check_side(row,col+1));
 }
 
-bool Shipwar::check_sides( int row,int col)
+bool Shipwar::check_sides( int row, int col)
 {
         assert(col>=0);
         assert(row>=0);
@@ -308,7 +308,7 @@ int Shipwar::get_row(int row)
 {       
         assert(row>=0);
         assert(row<board_height);
-        int newRow;
+        int newRow=0;
         if (row< (board_height-1)) {
                 newRow = row+1 ;
         } else {
@@ -321,7 +321,7 @@ int Shipwar::get_col(int col)
 {
         assert(col>=0);
         assert(col < board_length);
-        int newCol;
+        int newCol=0;
         if (col< (board_length-1)) {
                 newCol = col+1 ;
         } else {
@@ -336,8 +336,8 @@ void Shipwar::fill_medium_ships()
                 bool direction= rand()%2;
                 int row = rand()%10;
                 int col = rand()%10;
-                int row2 ;
-                int col2 ;
+                int row2 =0;
+                int col2 =0;
                 if (direction) {
                         row2 = get_row(row);
                         col2 = col;
@@ -359,10 +359,10 @@ void Shipwar::fill_big_ships()
                 bool direction= rand()%2;
                 int row = rand()%board_height;
                 int col = rand()%board_length;
-                int row2 ;
-                int col2 ;
-                int row3 ;
-                int col3 ;
+                int row2 =0;
+                int col2 =0;
+                int row3 =0;
+                int col3 =0;
                 if (direction) {
                         row2 = get_row(row);
                         row3 = get_row(row2);
@@ -424,8 +424,7 @@ void Shipwar::shoot(int row, int col)
         assert(col < board_length);
         if(is_checked(row,col)) {
                 std::cout << "you have already tried shooting here" << '\n';
-        }
-        if(is_square_free(row,col)) {
+        } else if(is_square_free(row,col)) {
                 set_checked(row,col);
                 std::cout << "miss" << '\n';
         } else if(!is_square_free(row,col)) {
@@ -445,8 +444,8 @@ void Shipwar::shoot(int row, int col)
 void Shipwar::print_the_sea()
 {
         assert(current_sea);
-        for (int i = 0; i < board_height; i++){
-                for (int j = 0; j <board_length ; j++){
+        for(int i = 0; i < board_height; i++) {
+                for(int j = 0; j <board_length ; j++) {
                         std::cout << current_sea[i*board_length+j] << ' ';
                 }
                 std::cout << '\n';
@@ -459,13 +458,13 @@ void Shipwar::play()
         // ths code is left here for the testing purposes, if the viewer would wish to have a look at what is going on behind the curtains.
         //std::cout << "this is the generated bord" << '\n';
         //game->print_the_sea();
-        int row;
-        int column;
+        int row=100;
+        int column=100;
         std::cout << "number of ships placed on the sea "<< '\n';
         std::cout << "small : " << n_of_small_ships << '\n';
         std::cout << "medium : " <<  n_of_medium_ships << '\n';
         std::cout << "big : " << n_of_big_ships << '\n';
-        while (sum_of_all_squares !=0) {
+        while(sum_of_all_squares !=0) {
                 do {
                         std::cout << "input the coordinates" << '\n';
                         std::cin >> row;
@@ -475,9 +474,5 @@ void Shipwar::play()
                 } while((row<=0)||(column<=0)||((row>board_height)||(column>board_length)));
                 shoot(row-1, column-1);
         }
-}
-int* Shipwar::get_current_sea()
-{
-        return current_sea;
 }
 // vim:et:tabstop=8:shiftwidth=8:cindent:fo=croq:textwidth=80:
