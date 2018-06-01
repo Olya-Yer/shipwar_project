@@ -1,10 +1,14 @@
+export PROJECT_DIR := $(PWD)
 TARGETS := bin/shipwar.exe
 SOURCES := $(wildcard src/*.cpp)
 HEADERS := $(wildcard  src/*.hpp)
 OBJECTS := $(patsubst src/%.cpp, obj/%.o, $(SOURCES))
 FOLDERS := obj bin
 
+
+
 all: $(OBJECTS) $(HEADERS)
+	@echo $(PROJECT_DIR)
 #	@echo "Buildnig .exe ..."
 	@$(CXX) -std=c++11  $(OBJECTS)  -o $(TARGETS)
 
@@ -28,9 +32,12 @@ endif
 docs:
 	mkdir docs/doxygen
 	doxygen config-file
+.PHONY: tests
+tests:
+	cd tests/ && $(MAKE)
 
 .PHONY: clean
 clean: 
 	@echo "Cleaning..."
-	@rm -rf $(FOLDERS) docs/doxygen
+	@rm -rf $(FOLDERS) docs/doxygen test_results
 	@echo "Done!"

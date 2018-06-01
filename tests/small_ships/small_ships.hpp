@@ -12,14 +12,13 @@ void test_small_ships(){
                 std::abort();
         } 
         game->fill_small_ships();
-        game->print_the_sea();
         int r = 0;
         for(int i = 0; i < 100; i++){
                 r += game->current_sea[i];
         }
         assert(6 == r);
         FILE * pFile;
-        pFile = fopen ("../test_results/small_ships/results.txt","w");
+        pFile = fopen ("/home/student/Documents/testthegit/shipwar_project/test_results/small_ships/results.txt","w");
         if (pFile!=NULL) {
                 fputs ("small_ships - pass",pFile);
                 fclose (pFile);
