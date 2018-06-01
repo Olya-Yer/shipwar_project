@@ -11,6 +11,9 @@
 #include <cstdlib>
 #include <stdlib.h> 
 #include "assert.h"
+#include <string>
+#include<limits>
+#include <sstream>
 #include "shipwar.hpp"
 //using namespace std;
 
@@ -460,18 +463,28 @@ void Shipwar::play()
         //game->print_the_sea();
         int row=100;
         int column=100;
+        int a = 0;
+        int b = 0;
         std::cout << "number of ships placed on the sea "<< '\n';
         std::cout << "small : " << n_of_small_ships << '\n';
         std::cout << "medium : " <<  n_of_medium_ships << '\n';
         std::cout << "big : " << n_of_big_ships << '\n';
         while(sum_of_all_squares !=0) {
                 do {
-                        std::cout << "input the coordinates" << '\n';
-                        std::cin >> row;
-                        std::cin >> column;
-                        assert(row);
-                        assert(column);
+                        std::cout << "input the row" << '\n';
+                        while(!(std::cin>>row)) {
+                                std::cin.clear();
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                std::cout << "Invalid input.  Try again: ";
+                        }
+                        std::cout << "input the column" << '\n';
+                        while(!(std::cin>>column)) {
+                                std::cin.clear();
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                std::cout << "Invalid input.  Try again: ";
+                        }
                 } while((row<=0)||(column<=0)||((row>board_height)||(column>board_length)));
+        
                 shoot(row-1, column-1);
         }
 }

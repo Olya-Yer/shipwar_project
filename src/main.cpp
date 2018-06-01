@@ -5,12 +5,12 @@
 
 
 int main(){
-	Shipwar *game = new Shipwar();
+        Shipwar *game = new Shipwar();
         if ( NULL == game) {
                 std::abort();
         }
         game->play();
         std::cout << "game is over. All ships are shooted" << '\n';
         delete game;
-	return 0;
+        return 0;
 }
