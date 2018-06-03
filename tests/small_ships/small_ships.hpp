@@ -18,7 +18,7 @@ void test_small_ships(){
         }
         assert(6 == r);
         FILE * pFile;
-        pFile = fopen ("/home/student/Documents/testthegit/shipwar_project/test_results/small_ships/results.txt","w");
+        pFile = fopen ("../../test_results/small_ships/results.txt","w");
         if (pFile!=NULL) {
                 fputs ("small_ships - pass",pFile);
                 fclose (pFile);

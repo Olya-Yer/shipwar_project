@@ -18,7 +18,7 @@ void test_big_ships(){
         }
 
         FILE * pFile;
-        pFile = fopen ("/home/student/Documents/testthegit/shipwar_project/test_results/big_ships/results.txt","w");
+        pFile = fopen ("../../test_results/big_ships/results.txt","w");
         if(12 == r){
                 if (pFile!=NULL) {
                         fputs ("big ships - pass",pFile);

@@ -17,7 +17,7 @@ void test_medium_ships(){
                 r += game->current_sea[i];
         }
         FILE * pFile;
-        pFile = fopen ("/home/student/Documents/testthegit/shipwar_project/test_results/medium_ships/results.txt","w");         
+        pFile = fopen ("../../test_results/medium_ships/results.txt","w");         
         if(8 == r) {
                 if (pFile!=NULL) {
                         fputs ("medium ships - pass",pFile);
