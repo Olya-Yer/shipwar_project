@@ -9,7 +9,7 @@ SOURCE_OBJECTS := $($(PROJECT_DIR)/obj/shipwar.o)
 
 small_ships: $(TEST_OBJECTS) FOLDERS
 	$(CXX) -std=c++11 $(SOURCES) $(PROJECT_DIR)/src/shipwar.cpp -I$(PROJECT_DIR)/src/ -o small_ships.exe
-	./small_ships.exe
+	./small_ships.exe >>$(PROJECT_DIR)/test_results/result.txt
 	rm small_ships.exe
 
 

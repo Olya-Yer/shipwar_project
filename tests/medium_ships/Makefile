@@ -7,7 +7,7 @@ SOURCE_OBJECTS := $(../obj/shipwar.o)
 
 medium_ships: $(TEST_OBJECTS) FOLDERS
 	g++ -std=c++11 $(SOURCES) $(PROJECT_DIR)/src/shipwar.cpp -I$(PROJECT_DIR)/src/ -o medium_ships.exe
-	./medium_ships.exe
+	./medium_ships.exe >>$(PROJECT_DIR)/test_results/result.txt
 	rm medium_ships.exe
 
 
